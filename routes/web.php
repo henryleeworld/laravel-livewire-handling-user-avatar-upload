@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,19 +15,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('avatar/{userId}', [UserController::class, 'getAvatar'])->name('avatar');
+Route::post('upload', [UploadController::class, 'store']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
-
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
+Route::middleware('auth')->group(function () {
     Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [UserController::class, 'update'])->name('profile.update');
+    Route::get('avatar/{userId}', [UserController::class, 'getAvatar'])->name('avatar');
 });
-
-// Route::view('posts/create', 'posts.create');
 
 require __DIR__.'/auth.php';

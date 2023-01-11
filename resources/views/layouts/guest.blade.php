@@ -8,20 +8,25 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.25.1/filepond.min.css" integrity="sha512-YmQexe70oShhZYDBrFABk/ZKWmMVs4fe+2bSI5+bDOEQRsTmuE3ErA0Dl/X6248XaMdU1TPH/7K2pe3sNQXXbQ==" crossorigin="anonymous" />
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @yield('styles')
         @livewireStyles
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <body class="font-sans text-gray-900 antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div>
+                <a href="/">
+                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                </a>
+            </div>
+
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                {{ $slot }}
+            </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.25.1/filepond.min.js" integrity="sha512-qXR2WH5q2wmugbujUyogX8wdI/sJ1FK4sYcKvO0QQq4Tw0aKxljqPQ2u0wUpUtv8d/5QszpTjHnUb8yKtyg7Yg==" crossorigin="anonymous"></script>
         @yield('scripts')
         @livewireScripts
     </body>
