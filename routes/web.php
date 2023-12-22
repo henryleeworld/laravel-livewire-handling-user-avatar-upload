@@ -26,4 +26,5 @@ Route::middleware('auth')->group(function () {
     Route::get('avatar/{userId}', [UserController::class, 'getAvatar'])->name('avatar');
 });
 
+
 require __DIR__.'/auth.php';

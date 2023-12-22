@@ -1,4 +1,4 @@
-# Laravel 9 Livewire 處理使用者頭像上傳
+# Laravel 10 Livewire 處理使用者頭像上傳
 
 使用者頭像是標識使用者身分的一張圖片，可以自行選擇要將哪張圖片或相片設為你的使用者頭像。
 
@@ -42,5 +42,5 @@ $ npm run build
 ![](https://i.imgur.com/mEBjp6t.png)
 > 註冊同時上傳想要顯示的頭像
 
-![](https://i.imgur.com/s1yXR7E.png)
+![](https://i.imgur.com/y2SN10R.png)
 > 個人資料中隨時變更頭像
