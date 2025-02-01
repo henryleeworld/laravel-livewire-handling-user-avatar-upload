@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
-use File;
 
 class UploadController extends Controller
 {
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         if ($request->hasFile('avatars')) {

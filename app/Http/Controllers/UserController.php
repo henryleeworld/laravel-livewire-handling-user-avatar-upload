@@ -13,16 +13,19 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
 
         return Storage::disk('local')->response('avatars/' . $userId . '/' . $user->avatar);
-
-//        return response()->download(
-//            storage_path('app/avatars/' . $userId . '/' . $user->avatar), 'avatar.png');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit()
     {
         return view('profile');
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(UpdateProfileRequest $request)
     {
         if ($request->hasFile('avatars')) {

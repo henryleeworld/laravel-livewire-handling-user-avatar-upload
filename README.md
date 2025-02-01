@@ -1,4 +1,4 @@
-# Laravel 10 Livewire 處理使用者頭像上傳
+# Laravel 11 Livewire 處理使用者頭像上傳
 
 使用者頭像是標識使用者身分的一張圖片，可以自行選擇要將哪張圖片或相片設為你的使用者頭像。
 
@@ -16,13 +16,13 @@ $ composer install
 ```sh
 $ php artisan key:generate
 ```
-- 執行 __Artisan__ 指令的 __storage:link__ 來建立連結符號，讓公用可存取的檔案維持在一個目錄中。
-```sh
-$ php artisan storage:link
-```
 - 執行 __Artisan__ 指令的 __migrate__ 來執行所有未完成的遷移。
 ```sh
 $ php artisan migrate
+```
+- 執行 __Artisan__ 指令的 __storage:link__ 來建立連結符號，讓公用可存取的檔案維持在一個目錄中。
+```sh
+$ php artisan storage:link
 ```
 - 執行安裝 Vite 和 Laravel 擴充套件引用的依賴項目。
 ```sh
@@ -39,8 +39,8 @@ $ npm run build
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/mEBjp6t.png)
+![](https://i.imgur.com/wQl6zDT.png)
 > 註冊同時上傳想要顯示的頭像
 
-![](https://i.imgur.com/y2SN10R.png)
+![](https://i.imgur.com/PXh3pZP.png)
 > 個人資料中隨時變更頭像

@@ -5,14 +5,14 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -34,74 +34,74 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required />
+                            name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-label for="avatar" :value="__('Avatar')" />
-            <input type="file" name="avatars" id="avatars" multiple data-max-files="1">
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            <x-text-input type="file" name="avatars" class="filepond" id="avatars" multiple data-max-files="1" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ml-4">
+            <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
     </form>
     @section('styles')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.css" integrity="sha512-GZs7OYouCNZCZFJ46MulDG9BOd9MjYuJv06Be1vVVQv8EdFP76llX+SUoEK2fJvFiKVO34UKBZ2ckU0psBaXeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.32.6/filepond.min.css" integrity="sha512-iVA6Ss6TWm6vWJjfSIpUZbqVARxoR305ogPKW1AkaAaXybe5e1Qaii393UQXMFJpCkcPZpvza+cryJl55Kj1hw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @endsection
     @section('scripts')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.js" integrity="sha512-l+50U3iKl0++46sldyNg5mOh27O0OWyWWsU2UnGfIVcxC+fEttAvao0Rns9KclIELHihYJppMWmM5sWof0M7uA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.32.6/filepond.min.js" integrity="sha512-sVH0xv/XXXk6JOql+ha35za7uIeFNQxhSAo2tHAmvloeDRXLLBdhablKfZg38beXDzJCHr/+Z7x2aP0o7Lk/Fg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             const inputElement = document.querySelector('input[id="avatars"]');
             const pond = FilePond.create( inputElement, {
                 credits: false
             });
             FilePond.setOptions({
-                labelIdle: '拖放文件，或者 <span class="filepond--label-action"> 瀏覽 </span>',
-                labelInvalidField: '不支援此文件',
-                labelFileWaitingForSize: '正在計算檔案大小',
-                labelFileSizeNotAvailable: '文件大小不可用',
-                labelFileLoading: '加載中',
-                labelFileLoadError: '加載錯誤',
-                labelFileProcessing: '上載',
-                labelFileProcessingComplete: '已上載',
-                labelFileProcessingAborted: '上載已取消',
-                labelFileProcessingError: '上載出错',
-                labelFileProcessingRevertError: '還原錯誤',
-                labelFileRemoveError: '刪除錯誤',
-                labelTapToCancel: '點擊取消',
-                labelTapToRetry: '點擊重試',
-                labelTapToUndo: '點擊還原',
-                labelButtonRemoveItem: '删除',
-                labelButtonAbortItemLoad: '中止',
-                labelButtonRetryItemLoad: '重試',
-                labelButtonAbortItemProcessing: '取消',
-                labelButtonUndoItemProcessing: '取消',
-                labelButtonRetryItemProcessing: '重試',
-                labelButtonProcessItem: '上載',
-                labelMaxFileSizeExceeded: '文件太大',
-                labelMaxFileSize: '最大值: {filesize}',
-                labelMaxTotalFileSizeExceeded: '超過最大可上傳大小',
-                labelMaxTotalFileSize: '最大可上傳大小：{filesize}',
-                labelFileTypeNotAllowed: '不支援此類型文件',
-                fileValidateTypeLabelExpectedTypes: '應為 {allButLastType} 或 {lastType}',
-                imageValidateSizeLabelFormatError: '不支持此類圖像類型',
-                imageValidateSizeLabelImageSizeTooSmall: '圖像太小',
-                imageValidateSizeLabelImageSizeTooBig: '圖像太大',
-                imageValidateSizeLabelExpectedMinSize: '最小值: {minWidth} × {minHeight}',
-                imageValidateSizeLabelExpectedMaxSize: '最大值: {maxWidth} × {maxHeight}',
-                imageValidateSizeLabelImageResolutionTooLow: '分辨率太低',
-                imageValidateSizeLabelImageResolutionTooHigh: '分辨率太高',
-                imageValidateSizeLabelExpectedMinResolution: '最小分辨率：{minResolution}',
-                imageValidateSizeLabelExpectedMaxResolution: '最大分辨率：{maxResolution}', 
+                labelIdle: '{{ __('Drag & Drop your files or ') }}<span class="filepond--label-action">{{ __('Browse') }}</span>',
+                labelInvalidField: '{{ __('Field contains invalid files') }}',
+                labelFileWaitingForSize: '{{ __('Waiting for size') }}',
+                labelFileSizeNotAvailable: '{{ __('Size not available') }}',
+                labelFileLoading: '{{ __('Loading') }}',
+                labelFileLoadError: '{{ __('Error during load') }}',
+                labelFileProcessing: '{{ __('Uploading') }}',
+                labelFileProcessingComplete: '{{ __('Upload complete') }}',
+                labelFileProcessingAborted: '{{ __('Upload cancelled') }}',
+                labelFileProcessingError: '{{ __('Error during upload') }}',
+                labelFileProcessingRevertError: '{{ __('Error during revert') }}',
+                labelFileRemoveError: '{{ __('Error during remove') }}',
+                labelTapToCancel: '{{ __('tap to cancel') }}',
+                labelTapToRetry: '{{ __('tap to retry') }}',
+                labelTapToUndo: '{{ __('tap to undo') }}',
+                labelButtonRemoveItem: '{{ __('Remove') }}',
+                labelButtonAbortItemLoad: '{{ __('Abort') }}',
+                labelButtonRetryItemLoad: '{{ __('Retry') }}',
+                labelButtonAbortItemProcessing: '{{ __('Cancel') }}',
+                labelButtonUndoItemProcessing: '{{ __('Undo') }}',
+                labelButtonRetryItemProcessing: '{{ __('Retry') }}',
+                labelButtonProcessItem: '{{ __('Upload') }}',
+                labelMaxFileSizeExceeded: '{{ __('File is too large') }}',
+                labelMaxFileSize: '{{ __('Maximum file size is ') }}{filesize}',
+                labelMaxTotalFileSizeExceeded: '{{ __('Maximum total size exceeded') }}',
+                labelMaxTotalFileSize: '{{ __('Maximum total file size is ') }}{filesize}',
+                labelFileTypeNotAllowed: '{{ __('File of invalid type') }}',
+                fileValidateTypeLabelExpectedTypes: '{{ __('Expects ') }}{allButLastType}{{ __(' or ') }}{lastType}',
+                imageValidateSizeLabelFormatError: '{{ __('Image type not supported') }}',
+                imageValidateSizeLabelImageSizeTooSmall: '{{ __('Image is too small') }}',
+                imageValidateSizeLabelImageSizeTooBig: '{{ __('Image is too big') }}',
+                imageValidateSizeLabelExpectedMinSize: '{{ __('Minimum size is ') }}{minWidth} × {minHeight}',
+                imageValidateSizeLabelExpectedMaxSize: '{{ __('Maximum size is ') }}{maxWidth} × {maxHeight}',
+                imageValidateSizeLabelImageResolutionTooLow: '{{ __('Resolution is too low') }}',
+                imageValidateSizeLabelImageResolutionTooHigh: '{{ __('Resolution is too high') }}',
+                imageValidateSizeLabelExpectedMinResolution: '{{ __('Minimum resolution is ') }}{minResolution}',
+                imageValidateSizeLabelExpectedMaxResolution: '{{ __('Maximum resolution is ') }}{maxResolution}', 
                 server: {
                     url: '/upload',
                     headers: {

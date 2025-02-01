@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\TemporaryFile;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,7 +31,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -44,9 +43,9 @@ class RegisteredUserController extends Controller
 
         $temporaryFile = TemporaryFile::where('folder', $request->avatars)->first();
         if ($temporaryFile) {
-            $user->addMedia(storage_path('app/avatars/tmp/' . $request->avatars . '/' . $temporaryFile->filename))
+            $user->addMedia(storage_path('app/private/avatars/tmp/' . $request->avatars . '/' . $temporaryFile->filename))
                 ->toMediaCollection('avatars');
-            rmdir(storage_path('app/avatars/tmp/' . $request->avatars));
+            rmdir(storage_path('app/private/avatars/tmp/' . $request->avatars));
             $temporaryFile->delete();
         }
 
@@ -54,6 +53,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('dashboard', absolute: false));
     }
 }
